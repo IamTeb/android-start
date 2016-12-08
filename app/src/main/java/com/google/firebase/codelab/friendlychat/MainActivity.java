@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             protected void populateViewHolder(MessageViewHolder viewHolder,
-                                              FriendlyMessage friendlyMessage, int position) {
+                                              final FriendlyMessage friendlyMessage, int position) {
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 viewHolder.messageTextView.setText(friendlyMessage.getText());
                 viewHolder.messengerTextView.setText(friendlyMessage.getName());
@@ -192,6 +192,28 @@ public class MainActivity extends AppCompatActivity
                             .load(friendlyMessage.getPhotoUrl())
                             .into(viewHolder.messengerImageView);
                 }
+
+                viewHolder.messengerImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = mFirebaseAuth.getCurrentUser().getDisplayName();
+                        String user_name = mFirebaseAuth.getCurrentUser().getDisplayName();
+                        String other = friendlyMessage.getName();
+                        if (user_name == friendlyMessage.getName())
+                        {
+                            Toast.makeText(MainActivity.this, "Hello " + name, Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(MainActivity.this,PrivateActivity.class);
+                            intent.putExtra("username",other);
+                            startActivity(intent);
+
+                            //startActivity(new Intent(MainActivity.this,PrivateActivity.class));
+                        }
+
+                    }
+                });
             }
         };
 

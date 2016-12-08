@@ -8,7 +8,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -16,7 +15,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".MyFirebaseInstanceIdService"
             android:exported="false">
@@ -24,26 +22,27 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name="com.google.firebase.codelab.friendlychat.MainActivity">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="friendlychat.firebase.google.com"
-                    android:scheme="http"
                     android:pathPrefix="/message"
-                    />
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SignInActivity" />
-
+        <activity android:name=".PrivateActivity"></activity>
     </application>
 
 </manifest>
